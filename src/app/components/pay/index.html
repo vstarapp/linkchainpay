@@ -1,0 +1,73 @@
+<div class="page">
+    <header class="bar bar-header">
+        <div class="bar-header-left">
+            <a href="javascript:history.back(-1)" class="header-back">
+                <img src="./img/logo.png">
+            </a>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="pay-info">
+            <ul>
+                <li>
+                    <p>订单号：{{$ctrl.order}}</p>
+                </li>
+                <li>
+                    <p>您购买的数字资产将要支付给商户沃伦策略</p>
+                    <p>（商户号：WLCE）</p>
+                </li>
+                <li>
+                    <p>支付金额：<span class="number red">{{$ctrl.amount}}</span>元人民币</p>
+                    <p class="grey">(数量：<span class="number red">{{($ctrl.amount/$ctrl.unit_price) | number :2}}</span> USDT 单价：<span class="number red">{{$ctrl.unit_price | number:2}}</span>CNY/USDT)</p>
+                </li>
+                <li>
+                    <p>备注码：<span class="number red">{{$ctrl.remark}}</span></p>
+                    <p>（请务必填写在付款方式的备注中）</p>
+                </li>
+            </ul>
+        </div>
+        <div class="pay-list">
+            <section ng-repeat="item in $ctrl.list">
+                <div class="left">
+                    <img src="./img/{{item.pay_type}}.png"/>
+                </div>
+                <div class="right">
+                    <div class="pay-list-type">
+                        <ul class="pay-text">
+                            <li class="pay-title">{{item.name}}</li>
+                            <li>姓名：{{item.account_name}}</li>
+                            <li>账号：{{item.account_num}}</li>
+                            <li ng-if="item.pay_type == 'unionpay'">开户行：{{item.open_bank}}</li>
+                        </ul>
+                    </div>
+                    <div class="tip">
+                        <p>{{item.remark}}</p>
+                    </div>
+                </div>
+                <div class="box-img">
+                    <div ng-if="item.pay_type != 'unionpay'">
+                        <img class="qrcode" src="./img/erweima.png" data-qrcode="{{item.qrcode}}" ng-click="$ctrl.changePic($event)"  ng-src="./img/erweima.png">
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="time-info">
+            <p><span class=" number red">{{$ctrl.payCountDown}}</span>内向以上商家账户支付<span class="red"><span class="number">{{$ctrl.amount}}</span>元人民币</span></p>
+            <p>付款备注码：<span class="number red">{{$ctrl.remark}}</span></p>
+        </div>
+        <button class="btn btn-info" ng-class="{true:'btn-info',false:'btn-disabled'}[$ctrl.className]" type="button" ng-click="$ctrl.submitPay()" ng-bind="$ctrl.btn_text" ng-disabled="$ctrl.btnDisabled"></button>
+        <p class="cancel" ng-click="$ctrl.cancelPay()">取消订单</p>
+        <div class="bottom-explain">
+            <p>LinkChainPay是专业的场外数字货币支付平台，交易说明：</p>
+            <p>1、请在规定时间内付款，付款成功后请务必点击“<span class="red">我已支付完成</span>“</p>
+            <p>2、LinkChainPay会通知卖家把相应USDT释放给“<span class="red">{{$ctrl.platform}}</span>”。</p>
+            <p>3、支付时，请务必填写该订单的“备注码”，当天取消订单不得超过3次。</p>
+        </div>
+    </div>
+</div>
+<div id="js-imgview-mask" class="imgview-mask" style="display: none;" ng-click="$ctrl.closePic()">
+</div>
+<div id="js-imgview" class="show-img">
+    <img id="bigimage">
+    <a ng-click="$ctrl.closePic()">X</a>
+</div>

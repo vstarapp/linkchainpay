@@ -1,0 +1,19 @@
+<!doctype html>
+<html ng-app="app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LinkChainPay</title>
+  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="/">
+</head>
+<body>
+  <div id="mask-loading" class="mask-loading" ng-show="loading" style="background-color: rgba(0, 0, 0, 0.17);">
+    <div class="loading-icon"></div>
+  </div>
+  <a ui-sref="home" ui-sref-active="active">home</a>
+  <a ui-sref="about" ui-sref-active="active">About</a>
+
+  <ui-view></ui-view>
+</body>
+</html>
