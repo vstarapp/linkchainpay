@@ -5,7 +5,7 @@ module.exports = {
             var self = this;
             let protocol = $location.protocol();
             let localhost = $location.host();
-            let url = protocol+'://'+localhost;
+            //let url = protocol+'://'+localhost;
             let id = 0;    //后台返回的ID
             //路径参数
             self.platform = $location.search().platform;
@@ -33,7 +33,7 @@ module.exports = {
                 self.btnDisabled = true;
                 self.className = false;
                 self.btn_text = '已通知对方正在放币，请稍后';
-                factoryHttp.post(url + '/api/v1/paySave.html',{id:id,type:'submit'})
+                factoryHttp.post('/api/v1/paySave.html',{id:id,type:'submit'})
                     .then(function (result) {
                         console.log(result)
                     });
@@ -42,7 +42,7 @@ module.exports = {
             self.cancelPay = function(){
                 self.btnDisabled = true;
                 self.className = false;
-                factoryHttp.post(url + '/api/v1/paySave.html',{id:id,type:'cancel'})
+                factoryHttp.post('/api/v1/paySave.html',{id:id,type:'cancel'})
                     .then(function (result) {
                         $window.history.back(-1);
                     });
@@ -57,7 +57,7 @@ module.exports = {
                     amount: self.amount,
                     remark: self.remark
                 };
-                factoryHttp.post(url + '/api/v1/paylist.html',postData)
+                factoryHttp.post('/api/v1/paylist.html',postData)
                     .then(function (result) {
                         if(result.data.err_code == 0){
                             self.list = result.data.data.list;

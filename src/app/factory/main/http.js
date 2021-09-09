@@ -1,3 +1,5 @@
+const config = require('../../../config')
+const BASE_URL = process.env.NODE_ENV === 'production' ? config.baseUrl.pro : config.baseUrl.dev;
 /**
  * 異步請求
  * **/
@@ -10,7 +12,7 @@ module.exports = [
         var defer = $q.defer();
         $http({
           method: "post",
-          url: url,
+          url: BASE_URL + url,
           data: data,
           contentType: "application/x-www-form-urlencoded"
         })
@@ -33,7 +35,7 @@ module.exports = [
                 : "?" + param + "=" + value;
           });
         }
-        url = url + str;
+        url = BASE_URL + str;
         $http({
           method: "get",
           url: url
