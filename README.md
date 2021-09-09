@@ -4,3 +4,5 @@
 ###### npm install
 ###### npm start
 ###### 访问地址：http://127.0.0.1:8080/home#!/home?platform=xx策略&order=123456789&amount=123&remark=支付
+####### 项目截图
+![Image of Yaktocat](https://github.com/golang-demo/linkchainpay/blob/main/doc/images/20210908142510.png)
